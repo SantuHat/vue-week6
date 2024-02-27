@@ -24,6 +24,7 @@ export default {
         })
         .catch((error) => {
           alert(error.response.data.message)
+          // 驗證失敗回登入頁
           this.$router.push('/login')
         })
     }
