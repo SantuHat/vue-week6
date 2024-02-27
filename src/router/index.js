@@ -26,7 +26,11 @@ const routes = [
       }
     ]
   },
-
+  // 登入
+  {
+    path: '/login',
+    component: () => import('../views/LoginView.vue')
+  },
   // 後台
   {
     path: '/admin',
