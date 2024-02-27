@@ -57,13 +57,13 @@ export default {
         .post(api, this.user)
         .then((res) => {
           const { expired, token } = res.data
-          console.log(token, expired)
+          // console.log(token, expired)
           // cookie
           document.cookie = `week6Token=${token};week6Expires=${new Date(
             expired
           )};`
-          // 跳轉到建立產品頁
-          // window.location = 'products.html'
+          // 跳轉到產品列表頁
+          this.$router.push('/admin/products')
         })
         .catch((error) => {
           // 登入失敗
