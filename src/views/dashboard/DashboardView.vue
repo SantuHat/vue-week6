@@ -8,3 +8,37 @@
   </nav>
   <RouterView></RouterView>
 </template>
+
+<script>
+import axios from 'axios'
+const { VITE_API_URL } = import.meta.env
+
+export default {
+  methods: {
+    // 驗證登入
+    checkAdmin () {
+      axios
+        .post(`${VITE_API_URL}api/user/check`)
+        .then((res) => {
+          console.log('驗證成功', res.data.success)
+        })
+        .catch((error) => {
+          alert(error.response.data.message)
+          this.$router.push('/login')
+        })
+    }
+
+  },
+  mounted () {
+    // 取出 Token
+    const token = document.cookie.replace(
+      // 須與瀏覽器中的key一致
+      /(?:(?:^|.*;\s*)week6Token\s*=\s*([^;]*).*$)|^.*$/,
+      '$1'
+    )
+    axios.defaults.headers.common.Authorization = token
+
+    this.checkAdmin()
+  }
+}
+</script>
