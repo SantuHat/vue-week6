@@ -39,7 +39,8 @@
 
 <script>
 import axios from 'axios'
-const api = 'https://ec-course-api.hexschool.io/v2/admin/signin'
+const { VITE_API_URL } = import.meta.env
+
 export default {
   data () {
     return {
@@ -51,6 +52,7 @@ export default {
   },
   methods: {
     login () {
+      const api = `${VITE_API_URL}admin/signin`
       axios
         .post(api, this.user)
         .then((res) => {
